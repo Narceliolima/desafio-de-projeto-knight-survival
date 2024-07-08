@@ -1,0 +1,142 @@
+[gd_scene load_steps=22 format=3 uid="uid://gae0q85icuwc"]
+
+[ext_resource type="Script" path="res://enemies/enemy.gd" id="1_ciiay"]
+[ext_resource type="PackedScene" uid="uid://pexgj2a1wcki" path="res://misc/dropable/skull.tscn" id="2_2qewd"]
+[ext_resource type="PackedScene" uid="uid://dae2b73bujuv2" path="res://misc/dropable/meat.tscn" id="3_8u8rn"]
+[ext_resource type="Texture2D" uid="uid://b137plfnisq52" path="res://addons/Tiny Swords (Update 010)/Resources/Sheep/HappySheep_All.png" id="3_gwy84"]
+[ext_resource type="Script" path="res://enemies/actions/hunt_player.gd" id="4_is8uw"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b4g8g"]
+atlas = ExtResource("3_gwy84")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mkvmd"]
+atlas = ExtResource("3_gwy84")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ka4ep"]
+atlas = ExtResource("3_gwy84")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0y20n"]
+atlas = ExtResource("3_gwy84")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t4vy1"]
+atlas = ExtResource("3_gwy84")
+region = Rect2(512, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_12qkp"]
+atlas = ExtResource("3_gwy84")
+region = Rect2(640, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lxylk"]
+atlas = ExtResource("3_gwy84")
+region = Rect2(768, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x0ph5"]
+atlas = ExtResource("3_gwy84")
+region = Rect2(896, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o2h0c"]
+atlas = ExtResource("3_gwy84")
+region = Rect2(0, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bsfit"]
+atlas = ExtResource("3_gwy84")
+region = Rect2(128, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6m5hi"]
+atlas = ExtResource("3_gwy84")
+region = Rect2(256, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q7tn8"]
+atlas = ExtResource("3_gwy84")
+region = Rect2(384, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t68g3"]
+atlas = ExtResource("3_gwy84")
+region = Rect2(512, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m0ebe"]
+atlas = ExtResource("3_gwy84")
+region = Rect2(640, 128, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_as3jk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b4g8g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mkvmd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ka4ep")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0y20n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t4vy1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_12qkp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lxylk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x0ph5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o2h0c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bsfit")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6m5hi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q7tn8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t68g3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m0ebe")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yndh6"]
+radius = 13.5104
+height = 33.7129
+
+[node name="Sheep" type="CharacterBody2D" groups=["enemies"]]
+motion_mode = 1
+script = ExtResource("1_ciiay")
+health = 2
+death_animation = ExtResource("2_2qewd")
+drop_chance = 2.5
+drop_items = Array[PackedScene]([ExtResource("3_8u8rn")])
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -15)
+sprite_frames = SubResource("SpriteFrames_as3jk")
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-2.13163e-14, -8)
+rotation = 1.5708
+scale = Vector2(1.11026, 1.18649)
+shape = SubResource("CapsuleShape2D_yndh6")
+
+[node name="HuntPlayer" type="Node" parent="."]
+script = ExtResource("4_is8uw")
+
+[node name="DamageDigitMarker" type="Marker2D" parent="."]
+position = Vector2(0, -31)

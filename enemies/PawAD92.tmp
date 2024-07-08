@@ -1,0 +1,73 @@
+[gd_scene load_steps=11 format=3 uid="uid://pykwyq6ow3bh"]
+
+[ext_resource type="Texture2D" uid="uid://bmedp616tcb01" path="res://addons/Tiny Swords (Update 010)/Factions/Knights/Troops/Pawn/Purple/Pawn_Purple.png" id="1_ahys7"]
+[ext_resource type="Script" path="res://enemies/actions/hunt_player.gd" id="1_t4v1w"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2apiv"]
+atlas = ExtResource("1_ahys7")
+region = Rect2(0, 192, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k0l5k"]
+atlas = ExtResource("1_ahys7")
+region = Rect2(192, 192, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rcshw"]
+atlas = ExtResource("1_ahys7")
+region = Rect2(384, 192, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ytsg6"]
+atlas = ExtResource("1_ahys7")
+region = Rect2(576, 192, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n0nts"]
+atlas = ExtResource("1_ahys7")
+region = Rect2(768, 192, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eyvy1"]
+atlas = ExtResource("1_ahys7")
+region = Rect2(960, 192, 192, 192)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_as3jk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2apiv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k0l5k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rcshw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ytsg6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n0nts")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eyvy1")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yndh6"]
+radius = 19.0
+height = 50.0
+
+[node name="Pawn" type="CharacterBody2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -21)
+sprite_frames = SubResource("SpriteFrames_as3jk")
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, -22)
+shape = SubResource("CapsuleShape2D_yndh6")
+
+[node name="Node" type="Node" parent="."]
+script = ExtResource("1_t4v1w")
+speed = null
